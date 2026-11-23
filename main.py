@@ -15,12 +15,15 @@ ENTRY = (
     "realising it had been querying the wrong chain the whole time."
 )
 
+# The gate: /output/entry.txt must be UTF-8 text of 1 to 200 characters.
+MAX_CHARS = 200
+
 
 def main() -> int:
     # Gate self-check: UTF-8 text, 1-200 characters, not only whitespace,
     # exactly one line.
-    if not (1 <= len(ENTRY) <= 200):
-        print(f"entry is {len(ENTRY)} characters, must be 1-200", file=sys.stderr)
+    if not (1 <= len(ENTRY) <= MAX_CHARS):
+        print(f"entry is {len(ENTRY)} characters, must be 1-{MAX_CHARS}", file=sys.stderr)
         return 1
     if not ENTRY.strip() or "\n" in ENTRY.strip():
         print("entry must be a single non-blank line", file=sys.stderr)
